@@ -6,5 +6,7 @@ target 'TodayDate' do
   use_frameworks!
 
   # Pods for TodayDate
-  pod 'Firebase/Analytics'
+ 
+   pod 'Firebase/Analytics'
+   pod 'Firebase/Auth'
 end

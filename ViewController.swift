@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class ViewController: UIViewController {
     
@@ -20,28 +21,42 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
 
     @IBAction func loginBtn(_ sender: Any) {
         
+        Auth.auth().signIn(withEmail: idText.text!, password: pwdText.text!) { (user, error) in
+
+                   if user != nil{
+
+                       print("login success")
+
+                   }
+
+                   else{
+
+                       print("login fail")
+
+                   }
+        
+        
+    }
         guard let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") else { return }
          self.navigationController?.pushViewController(homeVC, animated: true)
         
-        
-        
-    }
+}
     
     
-    @IBAction func joinBtn(_ sender: Any) {
+    @IBAction func joinModal(_ sender: Any) {
         
         guard let modalVC = storyboard?.instantiateViewController(identifier: "JoinViewController") as? JoinViewController else {
-            return
-            
-        }
-        self.present(modalVC, animated: true)
+                 return
+                 
+             }
+
+        self.present(modalVC,animated: true)
     }
     
 }
-
