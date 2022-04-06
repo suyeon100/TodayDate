@@ -12,13 +12,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
   
     @IBOutlet weak var tableView: UITableView!
     
+    var user:[String] = ["A", "B", "C", "D", "E"]
+    var content: [String] = [
+        "안녕하세요 ! ",
+        "",
+        "",
+        "",
+        ""
+    ]
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        return 10
+        return user.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath)
+        as! HomeTableViewCell
+        
+        cell.tooLabel.text = user[indexPath.row]
+        cell.contentLabel.text = content[indexPath.row]
         
         return cell
     }
@@ -46,14 +61,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         navigationItem.rightBarButtonItem = item
         
-        
-        
-        
-        let barAppearance = UINavigationBarAppearance()
-        
-        barAppearance.backgroundColor = .blue
-        
-        self.navigationController?.navigationBar.standardAppearance = barAppearance
 
     }
     
