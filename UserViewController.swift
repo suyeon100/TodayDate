@@ -27,9 +27,15 @@ class UserViewController: UIViewController {
         
        }
        
-    var dataSource = [(menuTitle: "공간", vc: viewController(.white)), (menuTitle: "커피", vc: viewController(.brown)), (menuTitle: "음식", vc: viewController(.yellow))]
+   // var dataSource = [(menuTitle: "Place", vc: viewController(.white)), (menuTitle: "Coffee", vc: viewController(.brown)), (menuTitle: "Food", vc: viewController(.yellow))]
 
-    
+    var dataSource = [(menu: String, content: UIViewController)]() {
+        didSet{
+            menuViewController.reloadData()
+            contentViewController.reloadData()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,9 +45,11 @@ class UserViewController: UIViewController {
     menuViewController.registerFocusView(nib: UINib(nibName: "FocusView", bundle: nil))
         
         menuViewController.cellAlignment = .center
+        
         menuViewController.reloadData()
         contentViewController.reloadData()
         
+        dataSource = makeDataSource()
         
     }
     
@@ -58,7 +66,34 @@ class UserViewController: UIViewController {
                
             }
     }
-}
+    
+    fileprivate func makeDataSource() -> [(menu: String, content: UIViewController)] {
+        
+        let myMenuArray = ["Place", "Coffee", "Food"]
+        return myMenuArray.map {
+            
+            let title = $0
+            
+            switch title {
+            case "Place":
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PlaceVC") as! PlaceVC
+                return (menu: title, content: vc)
+            case "Coffee":
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CoffeeVC") as! CoffeeVC
+                return (menu: title, content: vc)
+            case "Food":
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FoodVC") as! FoodVC
+                return (menu: title, content: vc)
+            default:
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PlaceVC") as! PlaceVC
+                return (menu: title, content: vc)
+            }
+            
+        }
+        
+    }
+        
+    }
 
 // MARK: 메뉴 데이터소스, 델리겟
 extension UserViewController: PagingMenuViewControllerDataSource {
@@ -72,7 +107,7 @@ extension UserViewController: PagingMenuViewControllerDataSource {
     
     func menuViewController(viewController: PagingMenuViewController, cellForItemAt index: Int) -> PagingMenuViewCell {
         let cell = viewController.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: index) as! MenuCell
-        cell.titleLabel.text = dataSource[index].menuTitle
+        cell.titleLabel.text = dataSource[index].menu
         return cell
     }
     
@@ -92,7 +127,7 @@ extension UserViewController: PagingContentViewControllerDataSource {
     }
     
     func contentViewController(viewController: PagingContentViewController, viewControllerAt index: Int) -> UIViewController {
-        return dataSource[index].vc
+        return dataSource[index].content
     }
 }
 
