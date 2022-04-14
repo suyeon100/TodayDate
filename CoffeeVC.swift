@@ -10,7 +10,14 @@ import UIKit
 
 class CoffeeVC: UIViewController {
     
+    @IBOutlet weak var coffeeLabel: UILabel!
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    
+    @IBAction func coffeeBtn(_ sender: Any) {
     }
 }

@@ -10,7 +10,16 @@ import UIKit
 
 class FoodVC: UIViewController {
     
+    
+    @IBOutlet weak var foodLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func foodBtn(_ sender: Any) {
+        
+    }
+    
 }
