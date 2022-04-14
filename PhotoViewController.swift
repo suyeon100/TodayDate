@@ -25,27 +25,26 @@ class PhotoViewController: UIViewController {
         "제주도 - 별돈별",
         "불광역 - 이룸커피",
         "강남역 - 어퍼앤언더",
-        
+
     ]
-    
+
     let image: [UIImage] = [
-    
-    UIImage(named: "img")!,
-    UIImage(named: "img1")!,
+
     UIImage(named: "img2")!,
-    UIImage(named: "img3")!,
+    UIImage(named: "img1")!,
     UIImage(named: "img4")!,
+    UIImage(named: "img3")!,
+    UIImage(named: "img")!,
     UIImage(named: "img6")!,
     UIImage(named: "img7")!,
     UIImage(named: "img8")!,
     UIImage(named: "img9")!,
     UIImage(named: "img10")!,
     UIImage(named: "img11")!
-    
-    
+
+
     ]
-       
-    
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +52,10 @@ class PhotoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.collectionViewLayout = UICollectionViewFlowLayout()
+
+        
+        
+        
     }
 }
 extension PhotoViewController: UICollectionViewDataSource {
@@ -64,6 +67,7 @@ extension PhotoViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlaceCollectionViewCell", for: indexPath) as! PlaceCollectionViewCell
+        
         cell.placeInfo.text = place[indexPath.row]
         cell.placeimage.image = image[indexPath.row]
         return cell
@@ -73,7 +77,7 @@ extension PhotoViewController: UICollectionViewDataSource {
 extension PhotoViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 150, height: 250)
+        return CGSize(width: 150, height: 300)
     }
     
 }
