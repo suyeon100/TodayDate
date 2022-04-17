@@ -20,6 +20,13 @@ class FoodVC: UIViewController {
     
     @IBAction func foodBtn(_ sender: Any) {
         
+        guard let change = storyboard?.instantiateViewController(identifier: "CoffeeCollection") as? CoffeeCollection else {
+            return
+            
+  }
+       self.present(change, animated: true)
+  }
+        
     }
     
-}
+

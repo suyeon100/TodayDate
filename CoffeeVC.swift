@@ -19,5 +19,13 @@ class CoffeeVC: UIViewController {
     
     
     @IBAction func coffeeBtn(_ sender: Any) {
-    }
+        
+      guard let change = storyboard?.instantiateViewController(identifier: "CoffeeCollection") as? CoffeeCollection else {
+          return
+          
 }
+     self.present(change, animated: true)
+}
+    
+ }
+
