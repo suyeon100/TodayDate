@@ -9,4 +9,7 @@ target 'TodayDate' do
  
    pod 'Firebase/Analytics'
    pod 'Firebase/Auth'
+   pod 'SnapKit', '~>5.0.0'
+   pod 'PagingKit'
+   pod 'MapKitSearchView'
 end
